@@ -95,6 +95,7 @@ class CustomerInformation {
             System.out.println("Item Price: " + item.getItemPrice());
             System.out.print("\n");
         }
+        System.out.println("Total: " + counterPaid);
             System.out.println("+---------------------------+");
     }
 
@@ -132,6 +133,8 @@ class Main {
             // Declare indata (a line in input file)
             String inline = null;
 
+            double Total = 0.0;
+
             while ((inline = br.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(inline, ";");
 
@@ -150,15 +153,17 @@ class Main {
 
                     ItemInformation item = new ItemInformation(itemId, itemName, itemPrice, date);
                     itemList.add(item);
+                    counterPaid += itemPrice;
 
                 }
-                CustomerInformation customer = new CustomerInformation(custId, custIC, counterPaid);
-                customer.addItem(itemList);
-                customerList.add(customer);
+                cust = new CustomerInformation(custId, custIC, counterPaid);
+                cust.addItem(itemList);
+                customerList.add(cust);
             }
             for(CustomerInformation customer: customerList){
                 customer.displayPurchasedItems();
             }
+                System.out.println(Total);
 
         } catch (FileNotFoundException fnfe) {
             System.out.println("File not found");
