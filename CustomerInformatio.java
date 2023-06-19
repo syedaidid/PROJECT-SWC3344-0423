@@ -37,8 +37,7 @@ class ItemInformation {
         this.itemName = itemName;
     }
 
-    public double getItemPrice() {
-        return itemPrice;
+    public double getItemPrice() {return itemPrice;
     }
 
     public void setItemPrice(double itemPrice) {
@@ -114,61 +113,8 @@ class CustomerInformation {
     public ArrayList<ItemInformation> getItems() {
         return null;
     }
-}
 
-class Main {
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-
-        try {
-
-            // Create file reader to read input file
-            BufferedReader br = new BufferedReader(new FileReader("customer.txt"));
-
-            // Create ArrayList
-            ArrayList<CustomerInformation> customerList = new ArrayList<CustomerInformation>();
-
-            // Create object
-            CustomerInformation cust;
-
-            // Declare indata (a line in input file)
-            String inline = null;
-
-            double Total = 0.0;
-
-            while ((inline = br.readLine()) != null) {
-                StringTokenizer st = new StringTokenizer(inline, ";");
-
-                String custId = st.nextToken();
-                String custIC = st.nextToken();
-                double counterPaid = Double.parseDouble(st.nextToken());
-
-                ArrayList<ItemInformation> itemList = new ArrayList<>();
-                StringTokenizer itemToken = new StringTokenizer(st.nextToken(), ":");
-                while (itemToken.hasMoreTokens()) {
-                    StringTokenizer infoToken = new StringTokenizer(itemToken.nextToken(), ",");
-                    String itemId = infoToken.nextToken();
-                    String itemName = infoToken.nextToken();
-                    double itemPrice = Double.parseDouble(infoToken.nextToken());
-                    String date = infoToken.nextToken();
-
-                    ItemInformation item = new ItemInformation(itemId, itemName, itemPrice, date);
-                    itemList.add(item);
-                    counterPaid += itemPrice;
-
-                }
-                cust = new CustomerInformation(custId, custIC, counterPaid);
-                cust.addItem(itemList);
-                customerList.add(cust);
-            }
-            for(CustomerInformation customer: customerList){
-                customer.displayPurchasedItems();
-            }
-                System.out.println(Total);
-
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("File not found");
-        } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
-        }
+    public int getItemQuantity() {
+        return itemList.size();
     }
 }
