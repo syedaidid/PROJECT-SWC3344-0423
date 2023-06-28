@@ -4,103 +4,109 @@ import java.util.*;
 import javax.swing.JOptionPane;
 
 class Main {
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        try {
+		try {
 
-            Queue qCounter1 = new Queue();
-            Queue qCounter2 = new Queue();
-            Queue qCounter3 = new Queue();
+			Queue qCounter1 = new Queue();
+			Queue qCounter2 = new Queue();
+			Queue qCounter3 = new Queue();
 
-            // Create file reader to read input file
-            BufferedReader br = new BufferedReader(new FileReader("customer.txt"));
+			Stack completedStack = new Stack();
 
-            // Create ArrayList
-            LinkedList<CustomerInformation> customerList = new LinkedList<CustomerInformation>();
+			// Crate file reader to read input file
+			BufferedReader br = new BufferedReader(new FileReader("customer.txt"));
 
-            // Create object
-            CustomerInformation cust;
+			// Create ArrayList
+			LinkedList<CustomerInformation> customerList = new LinkedList<CustomerInformation>();
 
-            // Declare indata (a line in input file)
-            String inline = null;
+			// Create object
+			CustomerInformation cust;
 
-            double Total = 0.0;
+			// Declare indata (a line in input file)
+			String inline = null;
 
-            while ((inline = br.readLine()) != null) {
-                StringTokenizer st = new StringTokenizer(inline, ";");
+			double Total = 0.0;
+			int totalCustomer = 0;
 
-                String custId = st.nextToken();
-                String custIC = st.nextToken();
-                double counterPaid = Double.parseDouble(st.nextToken());
+			while ((inline = br.readLine()) != null) {
+				StringTokenizer st = new StringTokenizer(inline, ";");
 
-                ArrayList<ItemInformation> itemList = new ArrayList<>();
-                StringTokenizer itemToken = new StringTokenizer(st.nextToken(), ":");
-                while (itemToken.hasMoreTokens()) {
-                    StringTokenizer infoToken = new StringTokenizer(itemToken.nextToken(), ",");
-                    String itemId = infoToken.nextToken();
-                    String itemName = infoToken.nextToken();
-                    double itemPrice = Double.parseDouble(infoToken.nextToken());
-                    String date = infoToken.nextToken();
+				String custId = st.nextToken();
+				String custIC = st.nextToken();
+				double counterPaid = Double.parseDouble(st.nextToken());
 
-                    ItemInformation item = new ItemInformation(itemId, itemName, itemPrice, date);
-                    itemList.add(item);
-                    counterPaid += itemPrice;
+				ArrayList<ItemInformation> itemList = new ArrayList<>();
+				StringTokenizer itemToken = new StringTokenizer(st.nextToken(), ":");
+				while (itemToken.hasMoreTokens()) {
+					StringTokenizer infoToken = new StringTokenizer(itemToken.nextToken(), ",");
+					String itemId = infoToken.nextToken();
+					String itemName = infoToken.nextToken();
+					double itemPrice = Double.parseDouble(infoToken.nextToken());
+					String date = infoToken.nextToken();
 
-                }
-                cust = new CustomerInformation(custId, custIC, counterPaid);
-                cust.addItem(itemList);
-                customerList.add(cust);
-            }
-            br.close();
+					ItemInformation item = new ItemInformation(itemId, itemName, itemPrice, date);
+					itemList.add(item);
+					counterPaid += itemPrice;
 
-            for(int i = 0; i < customerList.size(); i++){
-                CustomerInformation customer;
-                cust = customerList.get(i);
-                System.out.println(cust.getItemQuantity());
-            }
-            // for(CustomerInformation customer: customerList){
-            //     System.out.println(customer.getItemQuantity());
-            // }
-            // while (!customerList.isEmpty()) {
-            //     for (CustomerInformation customer : customerList) {
-            //         if (customer.getItemQuantity() <= 5) {
-            //             if (qCounter1.size < 5) {
-            //                 customerList.remove(customer);
-            //                 qCounter1.enqueue(customer);
-            //             }
-            //             else if (qCounter2.size < 5) {
-            //                 customerList.remove(customer);
-            //                 qCounter1.enqueue(customer);
-            //             }
-            //         }
-            //         else if (customer.getItemQuantity() > 5) {
-            //             customerList.remove(customer);
-            //             qCounter3.enqueue(customer);
-            //         }
-            //     }
-            // }
+				}
+				cust = new CustomerInformation(custId, custIC, counterPaid);
+				cust.addItem(itemList);
+				customerList.add(cust);
+				totalCustomer++;
+			}
+			br.close();
 
-            // int menu = 0;
-            // do {
-            //     String input;
-            //     input = JOptionPane.showInputDialog(null, "Please Select Menu\n1)Remove and Add new customer at counter 1\n2)Remove and add new customer at counter 2\n3)Exit");
-            //     menu = Integer.parseInt(input);
+			new Gui(customerList, qCounter1, qCounter2, qCounter3, totalCustomer, completedStack);
 
-            //     switch(menu){
-            //        case 1:
+			// Sort customers by their item quantity
+			// for (int i = 0; i < customerList.size(); i++) {
+			// cust = customerList.get(i);
+			// System.out.println(cust.getItemQuantity());
+			// }
 
-            //     }
+//			for (CustomerInformation customer : customerList) {
+//				System.out.println(customer.getItemQuantity());
+//			}
+//			while (!customerList.isEmpty()) {
+//				for (CustomerInformation customer : customerList) {
+//					if (customer.getItemQuantity() <= 5) {
+//						if (qCounter1.size < 5) {
+//							customerList.remove(customer);
+//							qCounter1.enqueue(customer);
+//						} else if (qCounter2.size < 5) {
+//							customerList.remove(customer);
+//							qCounter1.enqueue(customer);
+//						}
+//					}
+//				}
+//			}
+//			 else if (customer.getItemQuantity() > 5) {
+//			 customerList.remove(customer);
+//			 qCounter3.enqueue(customer);
+//			 }
+//			 }
+//			 }
+//
+//			 int menu = 0;
+//			 do {
+//			 String input;
+//			 input = JOptionPane.showInputDialog(null, "Please Select Menu\n1)Remove and
+//			 Add new customer at counter 1\n2)Remove and add new customer at counter
+//			 2\n3)Exit");
+//			 menu = Integer.parseInt(input);
+//
+//			 switch(menu){
+//			 case 1:
+//
+//			 }
+//
+//			 } while(menu != 3);
 
-
-
-
-            // } while(menu != 3);
-
-
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("File not found");
-        } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
-        }
-    }
+		} catch (FileNotFoundException fnfe) {
+			System.out.println("File not found");
+		} catch (IOException ioe) {
+			System.out.println(ioe.getMessage());
+		}
+	}
 }
