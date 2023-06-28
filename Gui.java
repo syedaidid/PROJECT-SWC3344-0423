@@ -185,20 +185,4 @@ public class Gui implements ActionListener {
 
 	} // end class
 
-//			if (qCounter1.size < 5) { // open if
-//				for (int i = 0; i < customerList.size(); i++) { // open for loop
-//					cust = customerList.get(i);
-//					if (cust.getItemQuantity() <= 17) {
-//						qCounter1.addQueue(cust);
-//						customerList.remove(i);
-//						totalCustomer--;
-//						JOptionPane.showMessageDialog(null, qCounter1.size);
-//
-//					} // end if statement
-//				} // end for loop
-//			} // close if
-
-//	public static void main(String[] args) {
-//		new Gui(100);
-//	}
 }

@@ -59,50 +59,6 @@ class Main {
 
 			new Gui(customerList, qCounter1, qCounter2, qCounter3, totalCustomer, completedStack);
 
-			// Sort customers by their item quantity
-			// for (int i = 0; i < customerList.size(); i++) {
-			// cust = customerList.get(i);
-			// System.out.println(cust.getItemQuantity());
-			// }
-
-//			for (CustomerInformation customer : customerList) {
-//				System.out.println(customer.getItemQuantity());
-//			}
-//			while (!customerList.isEmpty()) {
-//				for (CustomerInformation customer : customerList) {
-//					if (customer.getItemQuantity() <= 5) {
-//						if (qCounter1.size < 5) {
-//							customerList.remove(customer);
-//							qCounter1.enqueue(customer);
-//						} else if (qCounter2.size < 5) {
-//							customerList.remove(customer);
-//							qCounter1.enqueue(customer);
-//						}
-//					}
-//				}
-//			}
-//			 else if (customer.getItemQuantity() > 5) {
-//			 customerList.remove(customer);
-//			 qCounter3.enqueue(customer);
-//			 }
-//			 }
-//			 }
-//
-//			 int menu = 0;
-//			 do {
-//			 String input;
-//			 input = JOptionPane.showInputDialog(null, "Please Select Menu\n1)Remove and
-//			 Add new customer at counter 1\n2)Remove and add new customer at counter
-//			 2\n3)Exit");
-//			 menu = Integer.parseInt(input);
-//
-//			 switch(menu){
-//			 case 1:
-//
-//			 }
-//
-//			 } while(menu != 3);
-
 		} catch (FileNotFoundException fnfe) {
 			System.out.println("File not found");
 		} catch (IOException ioe) {
