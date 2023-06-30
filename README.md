@@ -3,28 +3,10 @@
 ![alt text](image/ss1.png "Title")
 
 ## Functionality
-Next:
+Add Customer: Clicking this button adds a new customer to the queue.
 
-    * Add Customer to Queue
+Remove Customer: Clicking this button removes the selected customer from the queue.
 
-Pay:
+Display Customers: Clicking this button displays the list of customers in the queue.
 
-    Remove customer from the queue
-
-Display:
-
-    Display all customers that have already paid, from newest to last
-
-Here's the formatted output:
-
-Next:
-
-    Add Customer to Queue
-
-Pay:
-
-    Remove customer from the queue
-
-Display:
-
-    Display all customers that have already paid, from newest to last
+Pay: Clicking this button marks the selected customer as paid and removes them from the queue.
