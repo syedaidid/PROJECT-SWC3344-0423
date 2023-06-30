@@ -43,7 +43,7 @@ class ItemInformation {
 	}
 
 	public String getDatePurchase() {
-		return null;
+		return datePurchase;
 	}
 
 }

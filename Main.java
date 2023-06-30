@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.io.*;
 import java.util.*;
 
@@ -7,7 +8,7 @@ class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 
 		try {
-
+			DecimalFormat decimalFormat = new DecimalFormat("0.00");
 			Queue qCounter1 = new Queue();
 			Queue qCounter2 = new Queue();
 			Queue qCounter3 = new Queue();
@@ -34,7 +35,7 @@ class Main {
 
 				String custId = st.nextToken();
 				String custIC = st.nextToken();
-				double counterPaid = Double.parseDouble(st.nextToken());
+				int counterPaid = Integer.parseInt(st.nextToken());
 
 				ArrayList<ItemInformation> itemList = new ArrayList<>();
 				StringTokenizer itemToken = new StringTokenizer(st.nextToken(), ":");
