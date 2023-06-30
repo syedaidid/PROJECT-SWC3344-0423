@@ -3,8 +3,9 @@
 ![alt text](image/ss1.png "Title")
 
 ## Functionality
-![Next Button](image/btnNext.png "Next Button")
-Clicking this button adds a new customer to the queue.
+| Button | Function |
+|---|---|
+|![Next Button](image/btnNext.png "Next Button") | Clicking this button adds a new customer to the queue. |
 
 ![Pay Button](image/btnPay.png "Next Button")
 Remove Customer: Clicking this button removes the selected customer from the queue.
