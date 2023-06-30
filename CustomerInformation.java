@@ -3,14 +3,40 @@ import java.util.*;
 class CustomerInformation {
 	String custId;
 	String custIC;
-	double counterPaid;
+	int counterPaid;
+	double totalPrice;
 	private LinkedList<ItemInformation> itemList;
 
-	CustomerInformation(String id, String ic, double paid) {
+	CustomerInformation(String id, String ic, int paid) {
 		custId = id;
 		custIC = ic;
 		counterPaid = paid;
 		this.itemList = new LinkedList<>();
+	}
+
+	// Mutator
+	public String getCustIC() {
+		return custIC;
+	}
+
+	public String getCustId() {
+		return custId;
+	}
+
+	public int getCounterPaid() {
+		return counterPaid;
+	}
+
+	public double totalPrice() {
+		double total = 0;
+		for (ItemInformation items : itemList) {
+			total = total + items.getItemPrice();
+		}
+		return total;
+	}
+
+	public int getItemQuantity() {
+		return itemList.size();
 	}
 
 	public void purchaseItem(ItemInformation item) {
@@ -23,7 +49,7 @@ class CustomerInformation {
 
 	public String toString() {
 		return ("ID: " + custId + "\nIc: " + custIC + "\nCounter Paid: " + counterPaid + "\nQuantity: "
-				+ getItemQuantity() + "\n");
+				+ getItemQuantity() + displayPurchasedItems() + "Total : " + totalPrice() + "\n");
 	}
 
 	public void addItem(List<ItemInformation> items) {
@@ -34,38 +60,26 @@ class CustomerInformation {
 		return itemList;
 	}
 
-	public void displayPurchasedItems() {
+	public void setCounterPaid(int counter) {
+		counterPaid = counter;
+	}
 
-		System.out.println("Customer ID: " + custId);
-		System.out.println("Purchased Items");
-		System.out.println("---------------");
-		for (ItemInformation item : itemList) {
-			System.out.println("Item ID: " + item.getItemId());
-			System.out.println("Item Name: " + item.getItemName());
-			System.out.println("Item Price: " + item.getItemPrice());
-			System.out.print("\n");
+	public String displayPurchasedItems() {
+		ItemInformation item;
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("\n+----------+---------+----------------+------------+--------------+\n");
+		sb.append("|Item No.  | Item ID |   Item Name    | Item Price |     Date     |\n");
+		sb.append("+----------+---------+----------------+------------+--------------+\n");
+
+		for (int i = 0; i < itemList.size(); i++) {
+			item = itemList.get(i);
+			sb.append(String.format("| %-8s | %-7s | %-14s | %10.2f | %12s |%n", (i + 1), item.getItemId(),
+					item.getItemName(), item.getItemPrice(), item.getDatePurchase()));
 		}
-		System.out.println("Total: " + counterPaid);
-		System.out.println("+---------------------------+");
-	}
 
-	public String getCustIC() {
-		return null;
-	}
+		sb.append("+---------+---------+----------------+------------+--------------+\n");
 
-	public String getCustId() {
-		return null;
-	}
-
-	public String getCounterPaid() {
-		return null;
-	}
-
-	public ArrayList<ItemInformation> getItems() {
-		return null;
-	}
-
-	public int getItemQuantity() {
-		return itemList.size();
+		return sb.toString();
 	}
 }
