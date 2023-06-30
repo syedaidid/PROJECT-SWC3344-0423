@@ -87,8 +87,9 @@ public class Gui implements ActionListener {
 		frame = new JFrame();
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(470, 600);
+		frame.setSize(430, 400);
 		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 		frame.add(panelCounter1);
 		frame.add(panelCounter2);
 		frame.add(panelCounter3);
@@ -120,12 +121,14 @@ public class Gui implements ActionListener {
 					if (qCounter1.size() < 5) {
 						iterator.remove();
 						qCounter1.enqueue(customer);
+						customer.setCounterPaid(1);
 						totalCustomer--;
 						queue1++;
 						labelQueue1.setText("Queue: " + String.valueOf(queue1));
 					} else if (qCounter2.size() < 5) {
 						iterator.remove();
 						qCounter2.enqueue(customer);
+						customer.setCounterPaid(2);
 						totalCustomer--;
 						queue2++;
 						labelQueue2.setText("Queue: " + String.valueOf(queue2));
@@ -134,6 +137,7 @@ public class Gui implements ActionListener {
 					if (qCounter3.size() < 5) {
 						iterator.remove();
 						qCounter3.enqueue(customer);
+						customer.setCounterPaid(3);
 						totalCustomer--;
 						queue3++;
 						labelQueue3.setText("Queue: " + String.valueOf(queue3));
