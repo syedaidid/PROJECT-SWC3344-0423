@@ -1,10 +1,12 @@
+import java.text.DecimalFormat;
 import java.util.*;
 
 class CustomerInformation {
-	String custId;
-	String custIC;
-	int counterPaid;
-	double totalPrice;
+	DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+	private String custId;
+	private String custIC;
+	private int counterPaid;
 	private LinkedList<ItemInformation> itemList;
 
 	CustomerInformation(String id, String ic, int paid) {
@@ -14,7 +16,7 @@ class CustomerInformation {
 		this.itemList = new LinkedList<>();
 	}
 
-	// Mutator
+	// Accessor
 	public String getCustIC() {
 		return custIC;
 	}
@@ -39,6 +41,15 @@ class CustomerInformation {
 		return itemList.size();
 	}
 
+	// Mutator
+	public void addItem(List<ItemInformation> items) {
+		itemList.addAll(items);
+	}
+
+	public void setCounterPaid(int counter) {
+		counterPaid = counter;
+	}
+
 	public void purchaseItem(ItemInformation item) {
 		itemList.add(item);
 	}
@@ -47,23 +58,7 @@ class CustomerInformation {
 		itemList.remove(item);
 	}
 
-	public String toString() {
-		return ("ID: " + custId + "\nIc: " + custIC + "\nCounter Paid: " + counterPaid + "\nQuantity: "
-				+ getItemQuantity() + displayPurchasedItems() + "Total : " + totalPrice() + "\n");
-	}
-
-	public void addItem(List<ItemInformation> items) {
-		itemList.addAll(items);
-	}
-
-	public LinkedList<ItemInformation> getPurchasedItems() {
-		return itemList;
-	}
-
-	public void setCounterPaid(int counter) {
-		counterPaid = counter;
-	}
-
+	// method to display purchased items
 	public String displayPurchasedItems() {
 		ItemInformation item;
 		StringBuilder sb = new StringBuilder();
@@ -81,5 +76,11 @@ class CustomerInformation {
 		sb.append("+---------+---------+----------------+------------+--------------+\n");
 
 		return sb.toString();
+	}
+
+	// toString
+	public String toString() {
+		return ("ID: " + custId + "\nIc: " + custIC + "\nCounter Paid: " + counterPaid + "\nQuantity: "
+				+ getItemQuantity() + displayPurchasedItems() + "Total : " + decimalFormat.format(totalPrice()) + "\n");
 	}
 }
