@@ -20,10 +20,10 @@ public class Gui implements ActionListener {
 	private int totalCustomer;
 	private Queue qCounter1, qCounter2, qCounter3;
 	private LinkedList<CustomerInformation> customerList;
-	private Stack completedStack;
+	private Stack<CustomerInformation> completedStack;
 
 	public Gui(LinkedList<CustomerInformation> customerList, Queue qCounter1, Queue qCounter2, Queue qCounter3,
-			int totalCustomer, Stack completedStack) {
+			int totalCustomer, Stack<CustomerInformation> completedStack) {
 		this.customerList = customerList;
 		this.totalCustomer = totalCustomer;
 		this.qCounter1 = qCounter1;
@@ -149,7 +149,7 @@ public class Gui implements ActionListener {
 		if (e.getSource() == btnPay1) {
 			if (!qCounter1.empty()) {
 				cust = (CustomerInformation) qCounter1.dequeue();
-				JOptionPane.showMessageDialog(null, cust);
+				JOptionPane.showMessageDialog(null, "Customer with ID " + cust.getCustId() + " has paid");
 				queue1--;
 				labelQueue1.setText("Queue: " + queue1);
 				completedStack.push(cust);
@@ -159,7 +159,7 @@ public class Gui implements ActionListener {
 		if (e.getSource() == btnPay2) {
 			if (!qCounter2.empty()) {
 				cust = (CustomerInformation) qCounter2.dequeue();
-				JOptionPane.showMessageDialog(null, cust);
+				JOptionPane.showMessageDialog(null, "Customer with ID " + cust.getCustId() + " has paid");
 				queue2--;
 				labelQueue2.setText("Queue: " + queue2);
 				completedStack.push(cust);
@@ -169,7 +169,7 @@ public class Gui implements ActionListener {
 		if (e.getSource() == btnPay3) {
 			if (!qCounter3.empty()) {
 				cust = (CustomerInformation) qCounter3.dequeue();
-				JOptionPane.showMessageDialog(null, cust);
+				JOptionPane.showMessageDialog(null, "Customer with ID " + cust.getCustId() + " has paid");
 				queue3--;
 				labelQueue3.setText("Queue: " + queue3);
 				completedStack.push(cust);
