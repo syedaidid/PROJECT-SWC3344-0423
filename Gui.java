@@ -85,6 +85,7 @@ public class Gui implements ActionListener {
 
 		// Frame
 		frame = new JFrame();
+		frame.setTitle("HyperMarket");
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(430, 400);

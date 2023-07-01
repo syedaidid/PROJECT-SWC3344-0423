@@ -73,7 +73,7 @@ class CustomerInformation {
 					item.getItemName(), item.getItemPrice(), item.getDatePurchase()));
 		}
 
-		sb.append("+---------+---------+----------------+------------+--------------+\n");
+		sb.append("+----------+---------+----------------+------------+--------------+\n");
 
 		return sb.toString();
 	}
