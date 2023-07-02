@@ -1,14 +1,16 @@
 import java.text.DecimalFormat;
 import java.util.*;
 
-class CustomerInformation {
+public class CustomerInformation {
 	DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
+	// declaration of variable
 	private String custId;
 	private String custIC;
 	private int counterPaid;
 	private LinkedList<ItemInformation> itemList;
 
+	// method Constructor with parameter
 	CustomerInformation(String id, String ic, int paid) {
 		custId = id;
 		custIC = ic;
@@ -16,7 +18,7 @@ class CustomerInformation {
 		this.itemList = new LinkedList<>();
 	}
 
-	// Accessor
+	// Accessor for each attributes
 	public String getCustIC() {
 		return custIC;
 	}
@@ -29,6 +31,7 @@ class CustomerInformation {
 		return counterPaid;
 	}
 
+	// method to calculate the total price of all item purchased by customer
 	public double totalPrice() {
 		double total = 0;
 		for (ItemInformation items : itemList) {
@@ -37,23 +40,28 @@ class CustomerInformation {
 		return total;
 	}
 
+	// method to return the total number of items purchased by customer
 	public int getItemQuantity() {
 		return itemList.size();
 	}
 
-	// Mutator
+	// methods to add multiple items at once to the customer's list of purchased
+	// items
 	public void addItem(List<ItemInformation> items) {
 		itemList.addAll(items);
 	}
 
+	// mutator for counter paid
 	public void setCounterPaid(int counter) {
 		counterPaid = counter;
 	}
 
+	// methods to add every single item to the customer's list of purchased items
 	public void purchaseItem(ItemInformation item) {
 		itemList.add(item);
 	}
 
+	// methods to remove a specific item from the customer's list of purchased items
 	public void removePurchasedItem(ItemInformation item) {
 		itemList.remove(item);
 	}
@@ -78,7 +86,7 @@ class CustomerInformation {
 		return sb.toString();
 	}
 
-	// toString
+	// printing method
 	public String toString() {
 		return ("ID: " + custId + "\nIc: " + custIC + "\nCounter Paid: " + counterPaid + "\nQuantity: "
 				+ getItemQuantity() + displayPurchasedItems() + "Total : " + decimalFormat.format(totalPrice()) + "\n");

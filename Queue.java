@@ -1,6 +1,7 @@
 import java.util.LinkedList;
 
-public class Queue {
+public class Queue {// open class
+
 	private LinkedList<Object> q; // Declare the object of queue using LinkedList
 	private int size;
 
@@ -8,13 +9,13 @@ public class Queue {
 	public Queue() {
 		q = new LinkedList<>();
 		size = 0;
-	}
+	}// end of constructor
 
 	// Method to insert an object to the queue
 	public void enqueue(Object item) {
 		q.addLast(item);
 		size++;
-	}
+	}// end of enqueue
 
 	// Method to remove an object from the queue
 	public Object dequeue() {
@@ -25,12 +26,12 @@ public class Queue {
 			System.out.println("Queue is empty!");
 			return null; // Return null or throw an exception to handle empty queue case
 		}
-	}
+	}// end of dequeue
 
 	// Method to test whether the queue is empty or not
 	public boolean empty() {
 		return (size == 0);
-	}
+	}// end of empty
 
 	// Return the element at the front without removing it
 	public Object front() {
@@ -46,4 +47,4 @@ public class Queue {
 	public int size() {
 		return size;
 	}
-}
+}// close class

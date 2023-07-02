@@ -90,7 +90,7 @@ public class Gui implements ActionListener {
 
 		// Frame
 		frame = new JFrame();
-		frame.setTitle("HyperMarket"); // Frame title
+		frame.setTitle("GG Mart"); // Frame title
 		frame.setLayout(null); // frame layout
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(430, 400); // size
@@ -112,15 +112,10 @@ public class Gui implements ActionListener {
 		btnPay3.addActionListener(this);
 		btnNext.addActionListener(this);
 		btnDisplay.addActionListener(this);
+	}// close GUI
 
-	}
-
-	public void actionPerformed(ActionEvent e) {
-
-		// Iterator. Use to iterate or scan through the list
+	public void actionPerformed(ActionEvent e) {// open actionPerformed
 		Iterator<CustomerInformation> iterator = customerList.iterator();
-
-		// create instance
 		CustomerInformation cust;
 		if (e.getSource() == btnNext) { // start btnNext
 
@@ -128,79 +123,79 @@ public class Gui implements ActionListener {
 			while (iterator.hasNext()) {
 				CustomerInformation customer = iterator.next();
 
-				// If the customer's item is <= 5, the customer will go counter 1, if full, go
-				// to counter 2, if full also, wait for the queue to be available
-				if (customer.getItemQuantity() <= 5) {
-					if (qCounter1.size() < 5) {
-						// remove customer
+				if (customer.getItemQuantity() <= 5) {// open if
+					if (qCounter1.size() < 5) {// open if
 						iterator.remove();
 						qCounter1.enqueue(customer);
 						customer.setCounterPaid(1);
 						totalCustomer--;
 						queue1++;
 						labelQueue1.setText("Queue: " + String.valueOf(queue1));
-					} else if (qCounter2.size() < 5) {
+					} // close if
+					else if (qCounter2.size() < 5) {// open else if
 						iterator.remove();
 						qCounter2.enqueue(customer);
 						customer.setCounterPaid(2);
 						totalCustomer--;
 						queue2++;
 						labelQueue2.setText("Queue: " + String.valueOf(queue2));
-					}
-				} else {
-					if (qCounter3.size() < 5) {
+					} // close else if
+				} // close if
+				else {// open else
+					if (qCounter3.size() < 5) {// open if
 						iterator.remove();
 						qCounter3.enqueue(customer);
 						customer.setCounterPaid(3);
 						totalCustomer--;
 						queue3++;
 						labelQueue3.setText("Queue: " + String.valueOf(queue3));
-					} else {
+					} // close if
+					else {// open else
 						JOptionPane.showMessageDialog(null, "All Counter are full!");
 						break;
-					}
-				}
+					} // close else
+				} // close else
 			}
 			labelCustomerLeft.setText("Customers Left: " + String.valueOf(totalCustomer));
 		} // close btnNext
 
-		if (e.getSource() == btnPay1) {
-			if (!qCounter1.empty()) {
+		if (e.getSource() == btnPay1) {// open btnPay1
+			if (!qCounter1.empty()) {// open if
 				cust = (CustomerInformation) qCounter1.dequeue();
 				JOptionPane.showMessageDialog(null, "Customer with ID " + cust.getCustId() + " has paid");
 				queue1--;
 				labelQueue1.setText("Queue: " + queue1);
 				completedStack.push(cust);
-			}
-		}
+			} // close if
+		} // close btnPay1
 
-		if (e.getSource() == btnPay2) {
-			if (!qCounter2.empty()) {
+		if (e.getSource() == btnPay2) {// open btnPay2
+			if (!qCounter2.empty()) {// open if
 				cust = (CustomerInformation) qCounter2.dequeue();
 				JOptionPane.showMessageDialog(null, "Customer with ID " + cust.getCustId() + " has paid");
 				queue2--;
 				labelQueue2.setText("Queue: " + queue2);
 				completedStack.push(cust);
-			}
-		}
+			} // close if
+		} // close btnPay2
 
-		if (e.getSource() == btnPay3) {
-			if (!qCounter3.empty()) {
+		if (e.getSource() == btnPay3) {// open btnPay3
+			if (!qCounter3.empty()) {// open if
 				cust = (CustomerInformation) qCounter3.dequeue();
 				JOptionPane.showMessageDialog(null, "Customer with ID " + cust.getCustId() + " has paid");
 				queue3--;
 				labelQueue3.setText("Queue: " + queue3);
 				completedStack.push(cust);
-			}
-		}
+			} // close if
+		} // close btnPay3
 
-		if (e.getSource() == btnDisplay) {
-			while (!completedStack.isEmpty()) {
+		if (e.getSource() == btnDisplay) {// open btnDisplay
+			while (!completedStack.isEmpty()) {// open while
 				cust = (CustomerInformation) completedStack.pop();
 				System.out.println(cust);
-			}
-		}
+			} // close while
+		} // close btnDisplay
 
-	} // end class
+	} // end actionPerformed
 
-}
+}// end class

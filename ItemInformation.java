@@ -1,4 +1,4 @@
-class ItemInformation {
+public class ItemInformation {
 	String itemId;
 	String itemName;
 	double itemPrice;
